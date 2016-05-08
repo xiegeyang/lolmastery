@@ -5,6 +5,19 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lolmastery", "lolmastery\lolmastery.csproj", "{AE3491E2-1E7B-4959-8C3D-B22555D28D62}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PublishScripts", "PublishScripts", "{16867FB3-6AB4-4C47-9015-C0DB205BA7CF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{1ADA80C4-0F1E-496F-9C73-20149390AAC1}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Scripts\Deploy-AzureResourceGroup.ps1 = PublishScripts\Scripts\Deploy-AzureResourceGroup.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{497BE4C6-A0F5-4C07-A6FF-FC18BAFD05C7}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Templates\lolmastery.json = PublishScripts\Templates\lolmastery.json
+		PublishScripts\Templates\lolmastery.param.dev.json = PublishScripts\Templates\lolmastery.param.dev.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +31,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1ADA80C4-0F1E-496F-9C73-20149390AAC1} = {16867FB3-6AB4-4C47-9015-C0DB205BA7CF}
+		{497BE4C6-A0F5-4C07-A6FF-FC18BAFD05C7} = {16867FB3-6AB4-4C47-9015-C0DB205BA7CF}
 	EndGlobalSection
 EndGlobal
