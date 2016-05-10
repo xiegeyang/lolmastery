@@ -1,0 +1,154 @@
+﻿body {
+  position: relative;
+  background-color: #000;
+}
+
+/* xs < 768 */
+@media screen and (max-width: 767px) {
+    body {
+        font-size: 0.9em;
+    }
+}
+
+/* sm */
+@media screen and (min-width: 768px) {
+    body {
+        font-size: 1em;
+    }
+}
+
+/* md */
+@media screen and (min-width: 992px) {
+    body {
+        font-size: 1.2em;
+    }
+}
+
+/* lg */
+@media screen and (min-width: 1200px) {
+    body {
+        font-size: 1.3em;
+    }
+}
+
+.viewport {
+    height: 100vh;
+}
+
+.container {
+  height: inherit;
+  position: relative;
+}
+
+#footer {
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.text-color {
+  color: #FFF /*#D08504*/;
+}
+
+.blue-color {
+  background-color: #29407C;
+}
+
+.blue-color-btn {
+  color: #FFF;
+  background-color: #29407C;
+  border-color: #29407C;
+}
+
+.blue-color-btn:hover,
+.blue-color-btn:focus {
+  color: #FFF;
+  background-color: #0950FF;
+  border-color: #0950FF;
+}
+
+.red-color {
+  background-color: #660000;
+}
+
+.red-color-btn {
+  color: #FFF;
+  background-color: #660000;
+  border-color: #660000;
+}
+
+.red-color-btn:hover, 
+.red-color-btn:focus {
+  color: #FFF;
+  background-color: #FF0303;
+  border-color: #FF0303;
+}
+
+#summoner-one,
+#summoner-two {
+  position: absolute;
+  top: 40%;
+}
+
+#compare-legend {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  text-align: center;
+}
+
+#compare {
+  display: block;
+  display: none;
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#versus-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+
+#close-compare {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 2em;
+  color: red;
+  cursor: pointer;
+  display: none;
+}
+
+.jumbotron {
+  border-radius: 0 !important;
+  
+}
+
+.bi-color {
+  background: #29407c;
+  background: -moz-linear-gradient(left,  #29407c 0%, #660000 100%); 
+  background: -webkit-linear-gradient(left,  #29407c 0%,#660000 100%); 
+  background: linear-gradient(to right,  #29407c 0%,#660000 100%); 
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#29407c', endColorstr='#660000',GradientType=1 ); 
+}
+
+.all-champs-btn {
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, 0);
+    margin-top: 20px;
+}
+
+.all-champs {
+  height: 30px;
+  width: 30px;
+}
+
+.tier-icon {
+  height: 100px;
+  width: 100px;
+}

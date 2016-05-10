@@ -8,10 +8,124 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <title>Summoner Mastery Stats</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/Styles/index.css">
 </head>
 <body>
-    <div> 
+    <!-- INTRO -->
+    <div class="viewport">
+        <div class="container">
+            <row id="summoner-one">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class='select-region'>Select Region</span> <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" data-region="NA" class="region">North America</a></li>
+                                <li><a href="#" data-region="EUW" class="region">EU West</a></li>
+                                <li><a href="#" data-region="EUNE" class="region">EU Nordic & East</a></li>
+                                <li><a href="#" data-region="LAN" class="region">Latin America North</a></li>
+                                <li><a href="#" data-region="LAS" class="region">Latin America South</a></li>
+                                <li><a href="#" data-region="BR" class="region">Brazil</a></li>
+                                <li><a href="#" data-region="TR" class="region">Turkey</a></li>
+                                <li><a href="#" data-region="RU" class="region">Russia</a></li>
+                                <li><a href="#" data-region="OCE" class="region">Oceania</a></li>
+                                <li><a href="#" data-region="JP" class="region">Japan</a></li>
+                                <li><a href="#" data-region="KR" class="region">Korea</a></li>
+                            </ul>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Summoner Name" />
+                        <div class="input-group-btn">
+                            <button type="button" class="btn blue-color-btn search">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </row>
+
+            <span id="compare-legend" class="text-center text-color">If you want to compare two summoners, <a id="compare-link" href="#">click here</a></span>
+            <div id="compare">
+                <button id="compare-btn" type="button" class="btn blue-color-btn">Compare</button>
+                <button id="compare-cancel-btn" type="button" class="btn red-color-btn">Cancel</button>
+            </div>
+
+            <row id="summoner-two">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class='select-region'>Select Region</span> <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" data-region="NA" class="region">North America</a></li>
+                                <li><a href="#" data-region="EUW" class="region">EU West</a></li>
+                                <li><a href="#" data-region="EUNE" class="region">EU Nordic & East</a></li>
+                                <li><a href="#" data-region="LAN" class="region">Latin America North</a></li>
+                                <li><a href="#" data-region="LAS" class="region">Latin America South</a></li>
+                                <li><a href="#" data-region="BR" class="region">Brazil</a></li>
+                                <li><a href="#" data-region="TR" class="region">Turkey</a></li>
+                                <li><a href="#" data-region="RU" class="region">Russia</a></li>
+                                <li><a href="#" data-region="OCE" class="region">Oceania</a></li>
+                                <li><a href="#" data-region="JP" class="region">Japan</a></li>
+                                <li><a href="#" data-region="KR" class="region">Korea</a></li>
+                            </ul>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Summoner Name" />
+                    </div>
+                </div>
+            </row>
+
+        </div>
     </div>
+    <!-- END INTRO -->
+    <!-- SUMMONER STATS -->
+    <div id="summoner-stats"></div>
+    <!-- END SUMMONER STATS -->
+    <!-- FOOTER -->
+    <footer id="footer">
+        <div class="container text-center text-color">
+            <p>LOL Mastery isn’t endorsed by Riot Games and doesn’t reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.</p>
+        </div>
+    </footer>
+    <!-- END FOOTER -->
+    <!-- SUMMONER CHAMPS MODAL -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">All Summoner Champions</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group">
+                        <span class="input-group-addon">Filter</span>
+                        <input id="filter" type="text" class="form-control" placeholder="Champion name">
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Name</th>
+                                    <th>Level</th>
+                                    <th>Grade</th>
+                                    <th>Points</th>
+                                    <th>Chest</th>
+                                </tr>
+                            </thead>
+                            <tbody id="all-summoner-champions" class="searchable"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END SUMMONER CHAMPS MODAL -->
+
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.0/Chart.bundle.min.js"></script>
+    <script src="~/Scripts/index.js"></script>
 </body>
 </html>
