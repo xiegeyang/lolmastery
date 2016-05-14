@@ -37,7 +37,7 @@
                         </div>
                         <input type="text" class="form-control" placeholder="Summoner Name" />
                         <div class="input-group-btn">
-                            <button type="button" class="btn blue-color-btn search">Search</button>
+                            <button id="summoner-one-search" type="button" class="btn blue-color-btn search">Search</button>
                         </div>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
 
             <span id="compare-legend" class="text-center text-color">If you want to compare two summoners, <a id="compare-link" href="#">click here</a></span>
             <div id="compare">
-                <button id="compare-btn" type="button" class="btn blue-color-btn">Compare</button>
+                <button id="compare-btn" type="button" class="btn blue-color-btn search">Compare</button>
                 <button id="compare-cancel-btn" type="button" class="btn red-color-btn">Cancel</button>
             </div>
 
@@ -76,9 +76,11 @@
         </div>
     </div>
     <!-- END INTRO -->
+
     <!-- SUMMONER STATS -->
     <div id="summoner-stats"></div>
     <!-- END SUMMONER STATS -->
+
     <!-- FOOTER -->
     <footer id="footer">
         <div class="container text-center text-color">
@@ -86,6 +88,7 @@
         </div>
     </footer>
     <!-- END FOOTER -->
+
     <!-- SUMMONER CHAMPS MODAL -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">

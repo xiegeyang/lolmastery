@@ -1,8 +1,10 @@
 ﻿(function () {
+    // variable stores the result set from riot api
     let lol = {
         data: []
     };
 
+    // Gets the summoner names and regions and sends a POST request to the web service, stores the information in the lol variable and calls the render page method to display the web api results
     function loadSummonerStats() {
         let summoners = [];
 
@@ -34,13 +36,13 @@
             if (response.d.ActionState) {
                 lol.data = JSON.parse(response.d.ActionResult);
 
-                displaySummonerStats(lol);
+                renderSummonerStats(lol);
 
                 $('html, body').animate({
                     scrollTop: $("#summoner-stats").offset().top
                 }, 2000);
             } else {
-                alert(response.d.Message);
+                alert(response.d.ErrorMessage);
             }
         })
         .fail(function (error) {
@@ -48,7 +50,8 @@
         });
     }
 
-    function displaySummonerStats(summonerData) {
+    // Creates the html content for the summoner search results
+    function renderSummonerStats(summonerData) {
         $('#summoner-stats').empty().append(
             `
             <div class="container-fluid">
@@ -56,9 +59,9 @@
                 <h1>Summoner Mastery Stats</h1>
             </div>
 
-            ${getSummonerStatsHeader(summonerData)}
+            ${renderSummonerStatsHeader(summonerData)}
 
-            ${getSummonerChampions(summonerData)}
+            ${renderSummonerChampions(summonerData)}
             </div>
             `
         );
@@ -67,8 +70,8 @@
 
     }
 
-
-    function getSummonerStatsHeader(summonerData) {
+    // Creates the html content for the summoners information
+    function renderSummonerStatsHeader(summonerData) {
         let statsHeader;
 
         if (summonerData.data.length === 1) {
@@ -134,7 +137,8 @@
         return statsHeader;
     }
 
-    function getSummonerChampions(summonerData) {
+    // Creates the html content for the top champions information and chart 
+    function renderSummonerChampions(summonerData) {
         let summonerChampions;
 
         if (summonerData.data.length === 1) {
@@ -205,6 +209,7 @@
         return summonerChampions;
     }
 
+    // Creates the html content for the top champions for the summoner at the left side
     function getSummonerLeftTopChampion(champion) {
         return (
           `
@@ -230,6 +235,7 @@
         );
     }
 
+    // Creates the html content for the top champions for the summoner at the right side
     function getSummonerRightTopChampion(champion) {
         return (
             `
@@ -255,7 +261,8 @@
         );
     }
 
-    function displayAllSummonerChampions(summonerIndex) {
+    // Creates the html content for table with all the champions used by the summoner
+    function renderAllSummonerChampions(summonerIndex) {
         $('#all-summoner-champions').empty();
 
         let allSummonerChamps = ``;
@@ -267,6 +274,7 @@
         $('#all-summoner-champions').append(allSummonerChamps);
     }
 
+    // Get the html content for a row for every champion that the summoner used and display in the summoner champions modal
     function getAllSummonerChampionByIndex(summonerIndex, champIndex) {
         return (
             `
@@ -282,6 +290,7 @@
         );
     }
 
+    // Creates the chart
     function getSummonerChart(summonerData) {
         let chartElement = $("#summonerChart");
 
@@ -367,7 +376,19 @@
     }
 
     $(function () {
-        $('.search, #compare-btn').click(function () {
+        /*
+            Page events in jQuery ready function
+        */
+
+        // event that triggers the search functionality when the user press enter in the summoner name input
+        $('.viewport input').keyup(function (e) {
+            if (e.keyCode === 13) {
+                $('.search:visible').click();
+            }
+        });
+
+        // event triggered when the search or compare button is clicked and validates if there is information
+        $('.search').click(function (e) {
             let isValid = true;
 
             if ($('#summoner-one').find('input').val() === '' || $('#summoner-one').find('span.select-region').text() === 'Select Region') {
@@ -388,11 +409,10 @@
             }
         });
 
-        $('#summoner-two').hide();
-
+        // event that displays the fields to insert an additional summoner to be compared
         $('#compare-link').click(function () {
             $('#compare-legend').hide();
-            $('.search').hide();
+            $('#summoner-one-search').hide();
 
             $("#summoner-two").animate({
                 top: '60%'
@@ -401,7 +421,8 @@
                 $('#compare').show(300, "linear");
             });
         });
-
+        
+        // event to display the region that was selected and focus the closest summoner name input
         $('.region').click(function (e) {
             e.preventDefault();
 
@@ -409,6 +430,7 @@
             $(this).parentsUntil('.input-group').parent().find('input').focus();
         });
 
+        // event to cancel the compare, hide the summoner two element and display the search back
         $('#compare-cancel-btn').click(function (e) {
             $('#summoner-two, #compare').fadeOut("fast", function () {
                 $("#summoner-one").animate({
@@ -416,20 +438,21 @@
                 }, 300);
 
                 $('#compare-legend').fadeIn();
-                $('.search').show();
+                $('#summoner-one-search').show();
             });
         });
 
-        // MODAL
+        // event to display the champion list used by the summoner when the modal is displaying
         $('#myModal').on('show.bs.modal', function (event) {
             let button = $(event.relatedTarget) // Button that triggered the modal
             let modal = $(this)
             modal.find('#filter').val('');
             $('.searchable tr').show();
 
-            displayAllSummonerChampions(button.data('summoner-index'));
+            renderAllSummonerChampions(button.data('summoner-index'));
         });
 
+        // evento to search champions in the modal
         $('#filter').keyup(function () {
             let rex = new RegExp($(this).val(), 'i');
             $('.searchable tr').hide();
